@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" >
+    <title>Document</title>
+</head>
+<body>
+    <h1>Stickers</h1>
+
+    <ul id="imagenes-list"></ul>
+
+    <!-- Incluye Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+
+    <script>
+              // Configura tu proyecto de Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyBJVL9HxNsAxQuJd2RJ-8-ch3r4uw0CsD",
+            authDomain: "sticker-lau.firebaseapp.com",
+            databaseURL: "https://sticker-lau-default-rtdb.firebaseio.com",
+            projectId: "sticker-lau",
+            storageBucket: "sticker-lau.appspot.com",
+            messagingSenderId: "30635355920",
+            appId: "1:30635355920:web:3dd2812b76630cf3187f95"
+    };
+
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Obtiene una referencia a la colección "imagenes"
+    var db = firebase.database();
+    var imagenesRef = db.ref("imagenes");
+
+     // Lee los datos de la base de datos en tiempo real
+     imagenesRef.on("value", function(snapshot) {
+      var imagenesList = document.getElementById("imagenes-list");
+      snapshot.forEach(function(childSnapshot) {
+        // Lee los datos de cada documento
+        var childData = childSnapshot.val();
+        var li = document.createElement("li");
+        li.innerHTML = "<strong>" + childData.nombre + "</strong> - " + childData.precio + " pesos <br> <img src='" + childData.url_descarga + "'>";
+        imagenesList.appendChild(li);
+      });
+    });
+
+    </script>
+</body>
+</html>
