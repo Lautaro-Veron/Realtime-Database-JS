@@ -17,7 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
 
     <script>
-              // Configura tu proyecto de Firebase
+              // Configurar proyecto de Firebase
         var firebaseConfig = {
             apiKey: "AIzaSyBJVL9HxNsAxQuJd2RJ-8-ch3r4uw0CsD",
             authDomain: "sticker-lau.firebaseapp.com",
@@ -31,7 +31,7 @@
     // Inicializa Firebase
     firebase.initializeApp(firebaseConfig);
 
-    // Obtiene una referencia a la colección "imagenes"
+    // Obtiener referencia a la colección "imagenes"
     var db = firebase.database();
     var imagenesRef = db.ref("imagenes");
 
